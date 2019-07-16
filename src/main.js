@@ -8,6 +8,7 @@ import Vuetify from 'vuetify'
 import '@fortawesome/fontawesome-free/css/all.css'
 import store from './store/index'
 import VuetifyDialog from 'vuetify-dialog'
+import _ from "lodash";
 
 Vue.use(Vuetify, {
   iconfont: 'fa'
