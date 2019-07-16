@@ -1,0 +1,2 @@
+webpackJsonp([3],{c27y:function(e,t,l){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n={render:function(){var e=this.$createElement;return(this._self._c||e)("div",{staticClass:"display-1"},[this._v("Welcome to the Generic Project")])},staticRenderFns:[]},s=l("VU/8")(null,n,!1,null,null,null);t.default=s.exports}});
+//# sourceMappingURL=3.a0e6ea6cd7315b5e8377.js.map
