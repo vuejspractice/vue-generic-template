@@ -1,19 +1,19 @@
 <template>
   <v-toolbar dark color="teal lighten-1" app>
     <v-btn flat to="/">
-      <span class="mr-2" color="white">Home</span>
+      <span class="mr-2 font-weight-bold text-none" color="white">Home</span>
     </v-btn>
     <v-btn flat to="/about">
-      <span class="mr-2">About</span>
+      <span class="mr-2 font-weight-bold text-none">About</span>
     </v-btn>
     <v-btn flat to="/dashboard" v-if="isAuthenticated">
-      <span class="mr-2">Dashboard</span>
+      <span class="mr-2 font-weight-bold text-none">Dashboard</span>
     </v-btn>
     <v-spacer></v-spacer>
     <Login v-if="!isAuthenticated" />
     <Register v-if="!isAuthenticated" />
     <v-btn flat v-if="isAuthenticated">
-      <span class="mr-2" @click="logout()">Logout</span>
+      <span class="mr-2 font-weight-bold text-none" @click="logout()">Logout</span>
     </v-btn>
   </v-toolbar>
 </template>

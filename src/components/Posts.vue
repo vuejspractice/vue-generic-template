@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-layout row wrap>
-      <v-flex xs8 offset-xs2>
+      <v-flex xs8 offset-xs2 v-if="isAuthenticated">
         <v-form ref="form" v-model="valid">
           <v-text-field
             solo
@@ -9,7 +9,6 @@
             v-model="title"
             value
             :error-messages="titleErrors"
-            :counter="10"
             required
             @input="$v.title.$touch()"
             @blur="$v.title.$touch()"
@@ -22,7 +21,6 @@
             row-height="2"
             v-model="message"
             :error-messages="messageErrors"
-            :counter="10"
             required
             @input="$v.message.$touch()"
             @blur="$v.message.$touch()"
@@ -32,11 +30,14 @@
 
           <v-item-group multiple>
             <v-subheader>Tags</v-subheader>
-            <v-item v-for="n in 8" :key="n">
-              <v-chip slot-scope="{ active, toggle }" :selected="active" @click="toggle">Tag {{ n }}</v-chip>
+            <v-item v-for="(tag, index) in tags" :key="index">
+              <v-chip slot-scope="{ active, toggle }" :selected="active" @click="toggle(); toggling(tag)">{{ tag.name }}</v-chip>
             </v-item>
           </v-item-group>
-          <v-flex right><v-btn color="success" :disabled="!valid" @click="submit">Post</v-btn></v-flex>
+          <v-flex right>
+            <v-btn color="error" :disabled="valid" @click="reset">reset</v-btn>
+            <v-btn color="success" :disabled="!valid" @click="submit">Post</v-btn>
+          </v-flex>
         </v-form>
       </v-flex>
       <v-flex>
@@ -128,10 +129,20 @@ export default {
       message: "",
       dialog: false,
       image: require("../images/avatar.svg"),
-      valid: true
+      valid: true,
+      tags: [{
+        name: 'cricket',
+        status: false
+      }, {
+        name: 'pongal',
+        status: false
+      }]
     };
   },
   methods: {
+    toggling(tag) {
+      tag.status = !tag.status;
+    },
     submit() {
       this.$v.$touch();
       this.$refs.form.validate();
@@ -141,6 +152,7 @@ export default {
             title: this.title,
             message: this.message
           });
+          console.log(this.tags)
         }
       });
     },
@@ -150,7 +162,7 @@ export default {
       }
     },
     reset() {
-      this.$refs.form.reset();
+      this.$v.$reset();
     },
     resetValidation() {
       this.$refs.form.resetValidation();
