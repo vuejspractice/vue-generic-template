@@ -2,6 +2,7 @@
   <v-container>
     <v-layout row justify-space-between>
       <v-flex>
+        <Post />
         <Posts />
       </v-flex>
       <Tags />
@@ -10,6 +11,7 @@
 </template>
 
 <script>
+import Post from './Post.vue';
 import Posts from "./Posts.vue";
 import Tags from "./Tags";
 import { mapGetters } from "vuex";
@@ -21,11 +23,11 @@ export default {
   },
   components: {
     Posts,
-    Tags
+    Tags,
+    Post
   },
   computed: {
-    ...mapGetters(["isError"]),
-    ...mapGetters(["isAuthenticated"])
+    ...mapGetters(["isError", "isAuthenticated"])
   },
   methods: {
     logout() {
