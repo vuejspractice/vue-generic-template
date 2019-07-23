@@ -38,8 +38,8 @@
           </v-item>
         </v-item-group>
         <v-flex right>
-          <v-btn color="error" :disabled="valid" @click="reset">reset</v-btn>
-          <v-btn color="success" :disabled="!valid" @click="submit">Post</v-btn>
+            <v-btn color="error" @click="reset">reset</v-btn>
+            <v-btn color="success" @click="submit">Post</v-btn>
         </v-flex>
       </v-form>
     </v-flex>
