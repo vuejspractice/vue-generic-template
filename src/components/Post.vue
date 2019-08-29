@@ -27,13 +27,13 @@
 
         <v-divider class="my-2"></v-divider>
 
-        <v-item-group multiple>
+        <v-item-group multiple v-model="selected">
           <v-subheader>Tags</v-subheader>
           <v-item v-for="(tag, index) in tags" :key="index">
             <v-chip
               slot-scope="{ active, toggle }"
               :selected="active"
-              @click="toggle(); toggling(tag)"
+              @click="toggle"
             >{{ tag.name }}</v-chip>
           </v-item>
         </v-item-group>
@@ -61,32 +61,32 @@ export default {
       title: "",
       message: "",
       valid: true,
+      selected: [],
       tags: [
         {
-          name: "cricket",
-          status: false
+          name: "cricket"
         },
         {
-          name: "pongal",
-          status: false
+          name: "pongal"
         }
       ]
     };
   },
   methods: {
-    toggling(tag) {
-      tag.status = !tag.status;
-    },
     submit() {
+      let that = this;
       this.$v.$touch();
       this.$refs.form.validate();
       this.$nextTick(function() {
+        that.selected = that.tags.filter(function(el, index) {
+          return that.selected.includes(index);
+        });
         if (this.valid) {
           console.log({
             title: this.title,
-            message: this.message
+            message: this.message,
+            tags: that.selected
           });
-          console.log(this.tags);
         }
       });
     },
